@@ -9,8 +9,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration cfg = new LwjglApplicationConfiguration();
 		cfg.title = "Fertiliser";
-		cfg.width = 272;
-		cfg.height = 470;
+		cfg.width = 544;
+		cfg.height = 1000;
 		
 		new LwjglApplication(new Fertiliser(), cfg);
 	}

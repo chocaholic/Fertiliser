@@ -48,16 +48,15 @@ public class GameRenderer {
 		this.midPointY = midPointY;
 
 		cam = new OrthographicCamera();
-		cam.setToOrtho(true, 136, gameHeight);
+		cam.setToOrtho(false, 272, gameHeight);
 
 		batcher = new SpriteBatch();
-//		batcher.setProjectionMatrix(cam.combined);
+		batcher.setProjectionMatrix(cam.combined);
 		shapeRenderer = new ShapeRenderer();
-//		shapeRenderer.setProjectionMatrix(cam.combined);
+		shapeRenderer.setProjectionMatrix(cam.combined);
 		
-//		mStage = new Stage(new ExtendViewport(136, gameHeight));
-//		mStage.getViewport().update(136, gameHeight, false);
 		mStage = new Stage();
+		mStage.getViewport().setCamera(cam);
 		Gdx.input.setInputProcessor(mStage);
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 
@@ -67,27 +66,16 @@ public class GameRenderer {
 		potA = new BitmapFont(Gdx.files.internal("arialBold.fnt"), Gdx.files.internal("arialBold.png"), false);
 		pri = new BitmapFont(Gdx.files.internal("arialBold.fnt"), Gdx.files.internal("arialBold.png"), false);
 		
-		bo = new Texture("bo3.jpg");
-		woden = new Texture("woden.png");
-		displayValue = new Texture("DisplayValue.jpg");
-		settings = new Texture("Settings.jpg");
-		reset = new Texture("Reset.jpg");
+		bo = AssetLoader.bo;
+		woden = AssetLoader.woden;
+		displayValue = AssetLoader.displayValue;
+		settings = AssetLoader.settings;
+		reset = AssetLoader.reset;
 		
 		nitrogen = new TextField("Nitrogen", skin);
 		phosphorus = new TextField("Phosporus", skin);
 		potAsh = new TextField("Pot Ash", skin);
 		price = new TextField("Price", skin);
-		
-		bo2 = new Sprite(AssetLoader.bo);
-//		scale = desiredWidth / bo.getWidth();
-		bo2.setSize(bo2.getWidth() * (scale / bo.getWidth()), bo2.getHeight() * (scale / bo.getHeight()));
-		bo2.setPosition((width / 1.2f) - (bo2.getWidth() / 2), (height / 1.1f)
-				- (bo2.getHeight() / 2));
-		
-//		initGameObjects();
-//		initAssets();
-//		transitionColor = new Color();
-//		prepareTransition(255, 255, 255, .5f);
 	}
 	
 	public void render(float delta, float runTime) {
@@ -95,20 +83,14 @@ public class GameRenderer {
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 		
 		batcher.begin();
-		font.draw(batcher, "Enter Mix Ratio and Price", 10, 400);
+		font.draw(batcher, "Enter Mix Ratio and Price", 10, 390);
 		nitro.draw(batcher, "Nitrogen", 10, 370);
 		phos.draw(batcher, "Phosphorus", 10, 310);
 		potA.draw(batcher, "Pot Ash", 10, 250);
 		pri.draw(batcher, "Price", 10, 190);
 		
-		bo2.draw(batcher);
-		
-//		batcher.draw(bo, 220, 420);
-		
-//		batcher.draw(bo, (width / 1.2f) - (bo.getWidth() / 2), (height / 2f)
-//				- (bo.getHeight() / 2), bo.getWidth() * (scale / bo.getWidth()), bo.getHeight() * (scale / bo.getHeight()));
-
-		batcher.draw(woden, 10, 420);
+		batcher.draw(bo, 220, 400);
+		batcher.draw(woden, 10, 400);
 		batcher.draw(displayValue, 5, 90);
 		batcher.draw(settings, 5, 50);
 		batcher.draw(reset, 5, 10);
@@ -151,26 +133,4 @@ public class GameRenderer {
 		
 		shapeRenderer.end();
 	}
-	
-//	public void prepareTransition(int r, int g, int b, float duration) {
-//		transitionColor.set(r / 255.0f, g / 255.0f, b / 255.0f, 1);
-//		alpha.setValue(1);
-//		Tween.registerAccessor(Value.class, new ValueAccessor());
-//		manager = new TweenManager();
-//		Tween.to(alpha, -1, duration).target(0)
-//				.ease(TweenEquations.easeOutQuad).start(manager);
-//	}
-//	
-//	private void drawTransition(float delta) {
-//		if (alpha.getValue() > 0) {
-//			manager.update(delta);
-//			Gdx.gl.glEnable(GL30.GL_BLEND);
-//			Gdx.gl.glBlendFunc(GL30.GL_SRC_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
-//			shapeRenderer.begin(ShapeType.Filled);
-//			shapeRenderer.setColor(1, 1, 1, alpha.getValue());
-//			shapeRenderer.rect(0, 0, 136, 300);
-//			shapeRenderer.end();
-//			Gdx.gl.glDisable(GL30.GL_BLEND);
-//		}
-//	}
 }

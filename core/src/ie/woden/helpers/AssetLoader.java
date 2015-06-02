@@ -7,8 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetLoader {
 
-	public static Texture logoTexture, boTexture;
-	public static TextureRegion logo, bo;
+	public static Texture logoTexture, bo, woden, displayValue, settings, reset;
+	public static TextureRegion logo;
 
 	public static void load() {
 		logoTexture = new Texture(Gdx.files.internal("logo.png"));
@@ -16,10 +16,20 @@ public class AssetLoader {
 
 		logo = new TextureRegion(logoTexture, 0, 0, 512, 114);
 		
-		boTexture = new Texture(Gdx.files.internal("bo3.jpg"));
-		boTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		bo = new Texture(Gdx.files.internal("bo3.jpg"));
+		bo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 		
-		bo = new TextureRegion(boTexture, 0, 0, 50, 45);
+		woden = new Texture("woden.png");
+		woden.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		displayValue = new Texture("DisplayValue.jpg");
+		displayValue.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		settings = new Texture("Settings.jpg");
+		settings.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+		
+		reset = new Texture("Reset.jpg");
+		reset.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 	}
 	
 	public static void dispose(){
