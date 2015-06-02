@@ -7,7 +7,8 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 
 public class AssetLoader {
 
-	public static Texture logoTexture, bo, woden, displayValue, settings, reset;
+	public static Texture logoTexture, bo, woden, displayValue, settings,
+			reset;
 	public static TextureRegion logo;
 
 	public static void load() {
@@ -15,40 +16,30 @@ public class AssetLoader {
 		logoTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
 
 		logo = new TextureRegion(logoTexture, 0, 0, 512, 114);
-		
+
 		bo = new Texture("bo3.jpg");
-//		boTexture.setFilter(TextureFilter.Linear, TextureFilter.Linear);
-		
-//		bo = new TextureRegion(boTexture, 0, 0, 50, 45);
-//		bo.flip(false, true);
-		
+		bo.setFilter(TextureFilter.Linear, TextureFilter.Linear);
+
 		woden = new Texture("woden.png");
-//		wodenTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-//		woden = new TextureRegion(wodenTexture, 0, 0, 127, 35);
-//		woden.flip(false, true);
-		
+		woden.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
 		displayValue = new Texture("DisplayValue.jpg");
-//		displayValueTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-//		displayValue = new TextureRegion(displayValueTexture, 0, 0, 260, 37);
-//		displayValue.flip(false, true);
-		
+		displayValue.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
 		settings = new Texture("Settings.jpg");
-//		settingsTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-//		settings = new TextureRegion(settingsTexture, 0, 0, 260, 37);
-//		settings.flip(false, true);
-		
+		settings.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
+
 		reset = new Texture("Reset.jpg");
-//		resetTexture.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
-		
-//		reset = new TextureRegion(resetTexture, 0, 0, 260, 37);
-//		reset.flip(false, true);
+		reset.setFilter(TextureFilter.Nearest, TextureFilter.Nearest);
 	}
-	
-	public static void dispose(){
-//		texture.dispose();
+
+	public static void dispose() {
+		logoTexture.dispose();
+		bo.dispose();
+		woden.dispose();
+		displayValue.dispose();
+		settings.dispose();
+		reset.dispose();
 	}
 
 }
