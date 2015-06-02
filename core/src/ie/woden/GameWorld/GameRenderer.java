@@ -1,18 +1,13 @@
 package ie.woden.GameWorld;
 
-import ie.woden.TweenAccessors.Value;
 import ie.woden.helpers.AssetLoader;
-import aurelienribon.tweenengine.TweenManager;
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL30;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer.ShapeType;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -28,16 +23,12 @@ public class GameRenderer {
 	private SpriteBatch batcher;
 
 	private int midPointY;
-	private TweenManager manager;
-	private Value alpha = new Value();
-	private Color transitionColor;
+
 	private BitmapFont font, nitro, phos, potA, pri;
 	private Texture bo, woden, displayValue, settings, reset;
 	private Stage mStage;
 	private Skin skin;
 	private TextField nitrogen, phosphorus, potAsh, price;
-
-	private Sprite bo2, woden2, displayValue2, settings2, reset2;
 
 	float width = Gdx.graphics.getWidth();
 	float height = Gdx.graphics.getHeight();
@@ -57,9 +48,8 @@ public class GameRenderer {
 		shapeRenderer = new ShapeRenderer();
 		shapeRenderer.setProjectionMatrix(cam.combined);
 
-		// mStage = new Stage(new ExtendViewport(136, gameHeight));
-		// mStage.getViewport().update(136, gameHeight, false);
 		mStage = new Stage();
+		mStage.getViewport().setCamera(cam);
 		Gdx.input.setInputProcessor(mStage);
 		skin = new Skin(Gdx.files.internal("uiskin.json"));
 
@@ -84,21 +74,6 @@ public class GameRenderer {
 		phosphorus = new TextField("Phosporus", skin);
 		potAsh = new TextField("Pot Ash", skin);
 		price = new TextField("Price", skin);
-
-		bo2 = new Sprite(AssetLoader.bo);
-		woden2 = new Sprite(AssetLoader.woden);
-		displayValue2 = new Sprite(AssetLoader.displayValue);
-
-		bo2.setPosition((width / 1.2f) - (bo2.getWidth() / 2), (height / 1.1f)
-				- (bo2.getHeight() / 2));
-
-		woden2.setPosition((width / 6f) - (woden2.getWidth() / 2),
-				(height / 1.1f) - woden2.getHeight() / 2);
-
-		displayValue2.setPosition(
-				(width / 6f) - (displayValue2.getWidth() / 2), (height / 5f)
-						- displayValue2.getHeight() / 2);
-
 	}
 
 	public void render(float delta, float runTime) {
@@ -106,37 +81,33 @@ public class GameRenderer {
 		Gdx.gl.glClear(GL30.GL_COLOR_BUFFER_BIT);
 
 		batcher.begin();
-		font.draw(batcher, "Enter Mix Ratio and Price", 10, 400);
-		nitro.draw(batcher, "Nitrogen", 10, 370);
-		phos.draw(batcher, "Phosphorus", 10, 310);
-		potA.draw(batcher, "Pot Ash", 10, 250);
-		pri.draw(batcher, "Price", 10, 190);
+		font.draw(batcher, "Enter Mix Ratio and Price", 10, midPointY + 170);
+		nitro.draw(batcher, "Nitrogen", 10, midPointY + 125);
+		phos.draw(batcher, "Phosphorus", 10, midPointY + 65);
+		potA.draw(batcher, "Pot Ash", 10, midPointY + 5);
+		pri.draw(batcher, "Price", 10, midPointY - 55);
 
-		// bo2.draw(batcher);
-		// woden2.draw(batcher);
-		// displayValue2.draw(batcher);
-
-		batcher.draw(bo, 220, 420);
-		batcher.draw(woden, 10, 420);
-		batcher.draw(displayValue, 5, 90);
-		batcher.draw(settings, 5, 50);
-		batcher.draw(reset, 5, 10);
+		batcher.draw(bo, 245, midPointY + 200, 50, 45);
+		batcher.draw(woden, 10, midPointY + 200, 127, 35);
+		batcher.draw(displayValue, 10, midPointY - 155, 260, 37);
+		batcher.draw(settings, 10, midPointY - 195, 260, 37);
+		batcher.draw(reset, 10, midPointY - 235, 260, 37);
 
 		batcher.end();
 
-		nitrogen.setPosition(10, 320);
+		nitrogen.setPosition(10, midPointY + 75);
 		nitrogen.setSize(250, 30);
 		nitrogen.setColor(255, 255, 255, 0);
 
-		phosphorus.setPosition(10, 260);
+		phosphorus.setPosition(10, midPointY + 15);
 		phosphorus.setSize(250, 30);
 		phosphorus.setColor(255, 255, 255, 0);
 
-		potAsh.setPosition(10, 200);
+		potAsh.setPosition(10, midPointY - 45);
 		potAsh.setSize(250, 30);
 		potAsh.setColor(255, 255, 255, 0);
 
-		price.setPosition(10, 140);
+		price.setPosition(10, midPointY - 105);
 		price.setSize(250, 30);
 		price.setColor(255, 255, 255, 0);
 
@@ -161,26 +132,4 @@ public class GameRenderer {
 
 		shapeRenderer.end();
 	}
-
-	// public void prepareTransition(int r, int g, int b, float duration) {
-	// transitionColor.set(r / 255.0f, g / 255.0f, b / 255.0f, 1);
-	// alpha.setValue(1);
-	// Tween.registerAccessor(Value.class, new ValueAccessor());
-	// manager = new TweenManager();
-	// Tween.to(alpha, -1, duration).target(0)
-	// .ease(TweenEquations.easeOutQuad).start(manager);
-	// }
-	//
-	// private void drawTransition(float delta) {
-	// if (alpha.getValue() > 0) {
-	// manager.update(delta);
-	// Gdx.gl.glEnable(GL30.GL_BLEND);
-	// Gdx.gl.glBlendFunc(GL30.GL_SRC_ALPHA, GL30.GL_ONE_MINUS_SRC_ALPHA);
-	// shapeRenderer.begin(ShapeType.Filled);
-	// shapeRenderer.setColor(1, 1, 1, alpha.getValue());
-	// shapeRenderer.rect(0, 0, 136, 300);
-	// shapeRenderer.end();
-	// Gdx.gl.glDisable(GL30.GL_BLEND);
-	// }
-	// }
 }
