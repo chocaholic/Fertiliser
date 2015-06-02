@@ -1,20 +1,20 @@
 package ie.woden.Screens;
 
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Screen;
-
 import ie.woden.GameWorld.GameRenderer;
 import ie.woden.GameWorld.GameWorld;
 import ie.woden.helpers.InputHandler;
 
-public class GameScreen implements Screen{
-	
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
+
+public class GameScreen implements Screen {
+
 	private GameWorld world;
 	private GameRenderer renderer;
 	private float runTime;
-	
+
 	public GameScreen() {
-		
+
 		float screenWidth = Gdx.graphics.getWidth();
 		float screenHeight = Gdx.graphics.getHeight();
 		float gameWidth = 272;
@@ -38,36 +38,36 @@ public class GameScreen implements Screen{
 	@Override
 	public void resize(int width, int height) {
 		// TODO Auto-generated method stub
-//		Gdx.app.log("GameScreen", "resizing");
+		// Gdx.app.log("GameScreen", "resizing");
 	}
-	
+
 	@Override
 	public void show() {
 		// TODO Auto-generated method stub
-//		Gdx.app.log("GameScreen", "show called");
+		// Gdx.app.log("GameScreen", "show called");
 	}
 
 	@Override
 	public void pause() {
 		// TODO Auto-generated method stub
-//		Gdx.app.log("GameScreen", "pause called");  
+		// Gdx.app.log("GameScreen", "pause called");
 	}
 
 	@Override
 	public void resume() {
 		// TODO Auto-generated method stub
-//		Gdx.app.log("GameScreen", "resume called"); 
+		// Gdx.app.log("GameScreen", "resume called");
 	}
 
 	@Override
 	public void hide() {
 		// TODO Auto-generated method stub
-//		Gdx.app.log("GameScreen", "hide called"); 
+		// Gdx.app.log("GameScreen", "hide called");
 	}
 
 	@Override
 	public void dispose() {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
